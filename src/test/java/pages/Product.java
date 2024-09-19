@@ -12,12 +12,17 @@ public class Product {
 
     By addToCart = By.cssSelector("button[component-id=\"1\"] > div[class=\"add-to-basket-button-text\"]");
     String cart = "https://www.trendyol.com/sepet";
-    By productSelector = By.cssSelector("div[class=\"p-card-chldrn-cntnr card-border\"] > a");
+    By productSelector = By.cssSelector(".p-card-chldrn-cntnr.card-border");
     List<WebElement> products = BaseTest.driver.findElements(productSelector);
 
     public void addToCart(){
-        for (WebElement product : products){
+        BaseTest.driver.navigate().refresh();
+
+        for (int i = 0; i < products.size(); i++){
+            List<WebElement> updatedProducts = BaseTest.driver.findElements(productSelector);
+
             errorControl.elementControl(productSelector);
+            updatedProducts.get(i).click();
 
             String originalWindow = BaseTest.driver.getWindowHandle();
             Set<String> allWindows = BaseTest.driver.getWindowHandles();
@@ -34,6 +39,7 @@ public class Product {
             BaseTest.driver.close();
             BaseTest.driver.switchTo().window(originalWindow);
         }
+
         BaseTest.driver.navigate().to(cart);
     }
 }

@@ -72,9 +72,8 @@ public class ErrorControl {
 
     public void elementControl(By path) {
         try {
-            WebDriverWait waitElement = new WebDriverWait(BaseTest.driver, Duration.ofSeconds(10));
+            WebDriverWait waitElement = new WebDriverWait(BaseTest.driver, Duration.ofSeconds(5));
             waitElement.until(ExpectedConditions.visibilityOfElementLocated(path));
-            waitElement.until(ExpectedConditions.elementToBeClickable(path));
 
         } catch (TimeoutException e) {
             try {

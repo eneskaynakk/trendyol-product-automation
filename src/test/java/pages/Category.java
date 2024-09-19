@@ -14,7 +14,7 @@ public class Category {
     By leastPricePath = By.cssSelector("input[class=\"fltr-srch-prc-rng-input min\"]");
     By highestPricePath = By.cssSelector("input[class=\"fltr-srch-prc-rng-input max\"]");
     By searchButton = By.cssSelector("button[class=\"fltr-srch-prc-rng-srch\"]");
-    By filterButton = By.cssSelector("div[class=\"selected-orderR\"]");
+    By filterButton = By.cssSelector("div[class=\"selected-order\"]");
     List<WebElement> priceButton = BaseTest.driver.findElements(By.className("fltr-cntnr-ttl"));
 
     public void productBrand(String brandName){
