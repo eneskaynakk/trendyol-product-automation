@@ -25,7 +25,6 @@ public class MainTest {
 
         BaseTest baseTest = new BaseTest();
         baseTest.setUp();
-
         double startTime = System.currentTimeMillis();
 
         ErrorControl errorControl = new ErrorControl();
@@ -42,12 +41,10 @@ public class MainTest {
 
         Product productPage = new Product();
         productPage.addToCart();
+
         baseTest.tearDown();
-
         double endTime = System.currentTimeMillis();
-
         double duration = endTime - startTime;
-
         System.out.println("Test Süresi: " + (duration / 1000) + " saniye");
     }
 }

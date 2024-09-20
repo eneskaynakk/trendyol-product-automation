@@ -58,7 +58,7 @@ public class ErrorControl {
             }
         } catch (RuntimeException e) {
             try {
-                String fileName = generateUniqueFileName("homePageCheck");
+                String fileName = generateUniqueFileName("homePageControl");
                 File screenshot = takeScreenshot(BaseTest.driver, fileName);
                 sendingMail(screenshot);
             } catch (IOException | EmailException ex) {

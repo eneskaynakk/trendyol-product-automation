@@ -12,16 +12,17 @@ public class Product {
 
     By addToCart = By.cssSelector("button[component-id=\"1\"] > div[class=\"add-to-basket-button-text\"]");
     String cart = "https://www.trendyol.com/sepet";
-    By productSelector = By.cssSelector(".p-card-chldrn-cntnr.card-border");
-    List<WebElement> products = BaseTest.driver.findElements(productSelector);
+    By product = By.cssSelector(".p-card-chldrn-cntnr.card-border");
+    By notification = By.className("onboarding-popover__default-renderer-primary-button");
+    List<WebElement> products = BaseTest.driver.findElements(product);
 
     public void addToCart(){
         BaseTest.driver.navigate().refresh();
 
         for (int i = 0; i < products.size(); i++){
-            List<WebElement> updatedProducts = BaseTest.driver.findElements(productSelector);
+            List<WebElement> updatedProducts = BaseTest.driver.findElements(product);
 
-            errorControl.elementControl(productSelector);
+            errorControl.elementControl(product);
             updatedProducts.get(i).click();
 
             String originalWindow = BaseTest.driver.getWindowHandle();
@@ -29,6 +30,10 @@ public class Product {
             for (String windowHandle : allWindows) {
                 if (!windowHandle.equals(originalWindow)) {
                     BaseTest.driver.switchTo().window(windowHandle);
+                    if(i==0){
+                        errorControl.elementControl(notification);
+                        BaseTest.driver.findElement(notification).click();
+                    }
                     break;
                 }
             }
@@ -39,7 +44,6 @@ public class Product {
             BaseTest.driver.close();
             BaseTest.driver.switchTo().window(originalWindow);
         }
-
         BaseTest.driver.navigate().to(cart);
     }
 }
